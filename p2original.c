@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <math.h>
-void input_line(float *x1, float *y1)
+void input_triangle(float *x1,float *y1,float *x2,float *y2,float *x3,float *y3)
 {
-   printf("enter the values of x,y\n");
-  scanf("%f%f",x1,y1);
+  printf("enter 1st point:\n");
+  scanf("%f %f",x1,y1);
+  printf("enter 2nd point:\n");
+  scanf("%f %f",x2,y2);
+  printf("enter 3rd point:\n");
+  scanf("%f %f",x3,y3);
 }
 int is_triangle(float x1, float y1, float x2, float y2,float x3, float y3)
 {
   int a,b,c;
-  a=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
-  b=sqrt(pow((x3-x2),2)+pow((y3-y2),2));
-  c=sqrt(pow((x1-x3),2)+pow((y1-y3),2));
+  a=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+  b=sqrt((x3-x2)*(x3-x2)+(y3-y2)*(y3-y2));
+  c=sqrt((x1-x3)*(x1-x3)+(y1-y3)*(y1-y3));
   if((a+b)>c && (b+c)>a && (c+a)>b)
     return 1;
   else
@@ -26,9 +30,7 @@ void output(float x1, float y1, float x2, float y2,float x3, float y3, int istri
 int main()
 {
   float x1,x2,x3,y1,y2,y3;
-  input_line(&x1,&y1);
-  input_line(&x2,&y2);
-  input_line(&x3,&y3);
+  input_triangle(&x1,&x2,&x3,&y1,&y2,&y3);
   int a=is_triangle(x1,y1,x2,y2,x3,y3);
   output(x1,y1,x2,y2,x3,y3,a);
   return 0;
